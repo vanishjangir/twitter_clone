@@ -59,7 +59,11 @@ app.use("/api/chats", chatsApiRoute);
 app.use("/api/messages", messagesApiRoute);
 app.use("/api/notifications", notificationsApiRoute);
 
-app.get("/", middleware.requireLogin, (req, res, next) => {
+app.get("/",function(req,res){
+  res.sendFile(__dirname+"/index.html");
+});
+
+app.get("/home", middleware.requireLogin, (req, res, next) => {
 
     var payload = {
         pageTitle: "Home",

@@ -11,7 +11,7 @@ app.set("views", "views");
 app.use(bodyParser.urlencoded({ extended: false }));
 
 router.get("/", (req, res, next) => {
-    
+
     res.status(200).render("login");
 })
 
@@ -31,13 +31,13 @@ router.post("/", async (req, res, next) => {
             payload.errorMessage = "Something went wrong.";
             res.status(200).render("login", payload);
         });
-        
+
         if(user != null) {
             var result = await bcrypt.compare(req.body.logPassword, user.password);
 
             if(result === true) {
                 req.session.user = user;
-                return res.redirect("/");
+                return res.redirect("/home");
             }
         }
 
